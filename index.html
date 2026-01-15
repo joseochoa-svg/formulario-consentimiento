@@ -30,20 +30,24 @@
     }
 
     * { box-sizing: border-box; }
-    html, body { height: 100%; }
+    html, body { height: auto; }
 
     body{
-      margin: 0;
-      color: var(--ink);
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
-      background:
-        radial-gradient(1200px 700px at 20% 10%, rgba(203,179,138,.18), transparent 55%),
-        radial-gradient(900px 600px at 80% 20%, rgba(185,154,107,.14), transparent 55%),
-        linear-gradient(135deg, var(--bg-ivory), var(--bg-sand));
-      display: grid;
-      place-items: center;
-      padding: 24px;
-    }
+  margin: 0;
+  color: var(--ink);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+  background:
+    radial-gradient(1200px 700px at 20% 10%, rgba(203,179,138,.18), transparent 55%),
+    radial-gradient(900px 600px at 80% 20%, rgba(185,154,107,.14), transparent 55%),
+    linear-gradient(135deg, var(--bg-ivory), var(--bg-sand));
+
+  /* ✅ scroll natural */
+  min-height: 100svh;     /* móviles modernos */
+  padding: 24px;
+  display: flex;
+  justify-content: center; /* centra horizontal */
+  align-items: flex-start; /* ✅ inicia arriba */
+}
 
     .container{
       width: min(680px, 100%);
