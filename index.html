@@ -24,7 +24,6 @@
       --shadow: 0 18px 60px rgba(0,0,0,.10);
       --shadow-soft: 0 10px 35px rgba(0,0,0,.08);
       --radius: 22px;
-      --radius-sm: 14px;
       --ok: #0f8a6a;
       --danger: #c44536;
       --focus: rgba(203,179,138,.35);
@@ -58,7 +57,7 @@
       overflow: hidden;
     }
 
-    /* línea sutil tipo “marco” hotel */
+    /* Marco sutil tipo “papelería” */
     .container:before{
       content: "";
       position: absolute;
@@ -73,23 +72,25 @@
       margin-bottom: 22px;
     }
 
+    /* Badge discreto */
     .logo{
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 16px;
-      padding: 10px 14px;
+      margin: 0 auto 14px;
+      padding: 8px 12px;
       border-radius: 999px;
-      border: 1px solid rgba(203,179,138,.35);
-      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(203,179,138,.32);
+      background: rgba(255,255,255,.62);
       box-shadow: var(--shadow-soft);
     }
 
-    .logo img{
+    /* CLASE SOLO PARA LA IMAGEN (NO REUSAR .logo AQUÍ) */
+    .logo-img{
       display: block;
-      height: 40px;
+      height: 36px; /* stationery: discreto */
       width: auto;
-      max-width: 240px;
+      max-width: 220px;
     }
 
     h1{
@@ -103,7 +104,7 @@
 
     .subtitle{
       margin: 0 auto;
-      max-width: 52ch;
+      max-width: 54ch;
       color: var(--muted);
       font-size: 14px;
       line-height: 1.55;
@@ -188,11 +189,7 @@
     }
 
     form{ margin-top: 8px; }
-
-    .grid{
-      display: grid;
-      gap: 16px;
-    }
+    .grid{ display: grid; gap: 16px; }
 
     label{
       display: block;
@@ -204,9 +201,7 @@
       font-weight: 600;
     }
 
-    .field{
-      position: relative;
-    }
+    .field{ position: relative; }
 
     input, select{
       width: 100%;
@@ -223,10 +218,6 @@
     input:focus, select:focus{
       border-color: rgba(203,179,138,.9);
       box-shadow: 0 0 0 4px var(--focus);
-    }
-
-    input:active, select:active{
-      transform: translateY(1px);
     }
 
     .helper{
@@ -257,9 +248,7 @@
       margin-top: 10px;
     }
 
-    .radio-option{
-      position: relative;
-    }
+    .radio-option{ position: relative; }
 
     .radio-option input[type="radio"]{
       position: absolute;
@@ -367,29 +356,30 @@
 
     @media (max-width: 640px){
       .radio-group{ grid-template-columns: 1fr; }
-      .logo img{ height: 36px; }
+      .logo-img{ height: 34px; }
     }
   </style>
 </head>
 
 <body>
   <div class="container" role="main" aria-label="Formulario de consentimiento de datos personales">
+
     <header class="header">
       <div class="logo" aria-label="Logo Dra Skin">
-        <!-- Opción A: Drive directo (asegúrate de compartir "Cualquiera con el enlace") -->
-        <img src="./assets/logodraskin.png" alt="Logo Dra Skin" class="logo">
-
-        <!-- Opción B (recomendada): si subes el logo al repo, cambia el src a:
-             src="./assets/logo-draskin.png"
-        -->
+        <img
+          id="logoTop"
+          alt="Dra Skin"
+          class="logo-img"
+        >
       </div>
 
       <!-- Fallback discreto si la imagen falla -->
-      <div id="logoFallback" style="display:none; font-family: Fraunces, serif; font-size: 18px; letter-spacing:.06em;">
+      <div id="logoFallback" style="display:none; font-family: Fraunces, serif; font-size: 16px; letter-spacing:.10em;">
         DRA SKIN
       </div>
 
       <h1>Protección de Datos Personales</h1>
+
       <p class="subtitle">
         Gracias por tomarte un momento. Tu información se trata con cuidado y se utiliza únicamente para los fines descritos en nuestra política.
       </p>
@@ -410,7 +400,8 @@
         <p class="policy-title">Política de tratamiento de datos</p>
         <p class="policy-text">
           Te invitamos a leerla antes de continuar.
-          <a href="https://www.draskin.co/pages/politica-de-privacidad-y-tratamiento-de-datos?gad_source=1&gad_campaignid=22584167943&gbraid=0AAAAAqwO-ETnoP01XrMCXFG8HGfwpF0-k&gclid=CjwKCAiAmp3LBhAkEiwAJM2JUAXeTaCoXmgZMzr9iGAcc6PcXZ2W8YoUO8mOl690CbZXCBH--3PeyRoCOjwQAvD_BwE" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.draskin.co/pages/politica-de-privacidad-y-tratamiento-de-datos?gad_source=1&gad_campaignid=22584167943&gbraid=0AAAAAqwO-ETnoP01XrMCXFG8HGfwpF0-k&gclid=CjwKCAiAmp3LBhAkEiwAJM2JUAXeTaCoXmgZMzr9iGAcc6PcXZ2W8YoUO8mOl690CbZXCBH--3PeyRoCOjwQAvD_BwE"
+             target="_blank" rel="noopener noreferrer">
             Abrir política
           </a>
         </p>
@@ -419,6 +410,7 @@
 
     <form id="consentForm" novalidate>
       <div class="grid">
+
         <div class="field">
           <label for="tipoDocumento">Tipo de documento</label>
           <select id="tipoDocumento" name="tipoDocumento" required>
@@ -479,14 +471,18 @@
         <div class="fineprint">
           Al enviar, confirmas que leíste la política y registras tu decisión.
           <br>
-          <a href="https://www.draskin.co/pages/politica-de-privacidad-y-tratamiento-de-datos?gad_source=1&gad_campaignid=22584167943&gbraid=0AAAAAqwO-ETnoP01XrMCXFG8HGfwpF0-k&gclid=CjwKCAiAmp3LBhAkEiwAJM2JUAXeTaCoXmgZMzr9iGAcc6PcXZ2W8YoUO8mOl690CbZXCBH--3PeyRoCOjwQAvD_BwE" target="_blank" rel="noopener noreferrer">Ver política completa</a>
+          <a href="https://www.draskin.co/pages/politica-de-privacidad-y-tratamiento-de-datos?gad_source=1&gad_campaignid=22584167943&gbraid=0AAAAAqwO-ETnoP01XrMCXFG8HGfwpF0-k&gclid=CjwKCAiAmp3LBhAkEiwAJM2JUAXeTaCoXmgZMzr9iGAcc6PcXZ2W8YoUO8mOl690CbZXCBH--3PeyRoCOjwQAvD_BwE"
+             target="_blank" rel="noopener noreferrer">
+            Ver política completa
+          </a>
         </div>
+
       </div>
     </form>
 
     <div class="success-message" id="successMessage" aria-live="polite">
       <div class="logo" aria-label="Logo Dra Skin">
-        <img src="./assets/logodraskin.png" alt="Logo Dra Skin" class="logo">
+        <img id="logoSuccess" alt="Dra Skin" class="logo-img">
       </div>
       <div class="success-title">Gracias. Todo quedó registrado.</div>
       <p class="success-text">
@@ -500,6 +496,23 @@
     const progressBar = document.getElementById('progressBar');
     const submitBtn = document.getElementById('submitBtn');
     const successMessage = document.getElementById('successMessage');
+
+    // ✅ LOGO ABSOLUTO (evita problemas de ruta en GitHub Pages)
+    const LOGO_URL = 'https://joseochoa-svg.github.io/formulario-consentimiento/assets/logodraskin.png';
+
+    const logoTop = document.getElementById('logoTop');
+    const logoSuccess = document.getElementById('logoSuccess');
+    const logoFallback = document.getElementById('logoFallback');
+
+    // Cargar logos
+    logoTop.src = LOGO_URL;
+    logoSuccess.src = LOGO_URL;
+
+    // Fallback si falla la carga del logo superior
+    logoTop.onerror = () => {
+      logoTop.style.display = 'none';
+      logoFallback.style.display = 'block';
+    };
 
     // Tu URL de Apps Script
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxkbsOhh3Gwd4Wc1Vg4wyTNj4TCX1tP7DxqmDKs7Bznd40r_E1UcN7Mq0PkZQMOe_Kp/exec';
@@ -519,12 +532,7 @@
     const errorEmail = document.getElementById('errorEmail');
     const errorDecision = document.getElementById('errorDecision');
 
-    // Email: validación más estricta (sin pasarse de estricta)
     function isValidEmail(email) {
-      // - sin espacios
-      // - un @
-      // - dominio con punto
-      // - TLD de 2+ letras
       const re = /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/;
       return re.test(String(email).trim());
     }
@@ -558,13 +566,12 @@
       progressBar.style.width = progress + '%';
     }
 
-    // Listeners para progreso
     form.querySelectorAll('input, select').forEach(el => {
       el.addEventListener('input', updateProgress);
       el.addEventListener('change', updateProgress);
     });
 
-    // Validación en blur (experiencia “premium”: te guía sin regañarte)
+    // Blur validations
     tipoDocumento.addEventListener('blur', () => {
       const invalid = !tipoDocumento.value;
       showError(errorTipoDocumento, invalid);
@@ -573,7 +580,7 @@
 
     numeroDocumento.addEventListener('blur', () => {
       const val = numeroDocumento.value.trim();
-      const invalid = !val || !/^\d{5,}$/.test(val); // mínimo 5 dígitos, ajustable
+      const invalid = !val || !/^\d{5,}$/.test(val);
       showError(errorNumero, invalid);
       markInvalid(numeroDocumento, invalid);
     });
@@ -586,7 +593,6 @@
 
     telefono.addEventListener('blur', () => {
       const val = telefono.value.trim();
-      // Permite +, espacios y números; exige mínimo 7 dígitos
       const digits = val.replace(/\D/g, '');
       const invalid = !val || digits.length < 7;
       showError(errorTelefono, invalid);
@@ -602,26 +608,22 @@
     function validateAll() {
       let ok = true;
 
-      // Tipo documento
       const invTipo = !tipoDocumento.value;
       showError(errorTipoDocumento, invTipo);
       markInvalid(tipoDocumento, invTipo);
       if (invTipo) ok = false;
 
-      // Documento
       const docVal = numeroDocumento.value.trim();
       const invDoc = !docVal || !/^\d{5,}$/.test(docVal);
       showError(errorNumero, invDoc);
       markInvalid(numeroDocumento, invDoc);
       if (invDoc) ok = false;
 
-      // Nombre
       const invNombre = !nombre.value.trim();
       showError(errorNombre, invNombre);
       markInvalid(nombre, invNombre);
       if (invNombre) ok = false;
 
-      // Teléfono
       const telVal = telefono.value.trim();
       const telDigits = telVal.replace(/\D/g, '');
       const invTel = !telVal || telDigits.length < 7;
@@ -629,13 +631,11 @@
       markInvalid(telefono, invTel);
       if (invTel) ok = false;
 
-      // Email
       const invEmail = !isValidEmail(emailInput.value);
       showError(errorEmail, invEmail);
       markInvalid(emailInput, invEmail);
       if (invEmail) ok = false;
 
-      // Decision
       const decisionChecked = document.querySelector('input[name="decision"]:checked');
       const invDecision = !decisionChecked;
       showError(errorDecision, invDecision);
@@ -648,7 +648,6 @@
       e.preventDefault();
 
       if (!validateAll()) {
-        // Pequeño gesto premium: mueve el foco al primer error visible
         const firstError = document.querySelector('.error-message[style*="block"]');
         if (firstError) {
           const field = firstError.closest('.field')?.querySelector('input, select');
@@ -672,7 +671,6 @@
       };
 
       try {
-        // Mantengo tu enfoque no-cors para evitar bloqueos CORS en GitHub Pages
         await fetch(SCRIPT_URL, {
           method: 'POST',
           mode: 'no-cors',
@@ -680,7 +678,6 @@
           body: JSON.stringify(payload),
         });
 
-        // UX lujo: transición suave al “gracias”
         form.style.display = 'none';
         successMessage.style.display = 'block';
 
@@ -691,7 +688,6 @@
       }
     });
 
-    // Estado inicial
     updateProgress();
   </script>
 </body>
